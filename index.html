@@ -81,9 +81,9 @@
         </div>
     </section>
 
-    <!-- Original CTA Button (now persistent on desktop, logic handles scroll) -->
+    <!-- Original CTA Button (Under Video) -->
     <div class="flex justify-center mt-10 relative z-10 px-4">
-        <a href="#registration-form" class="btn-gradient hover:scale-105 text-white px-12 py-4 rounded-xl shadow-2xl font-bold border-2 border-[#1a70b0] flex flex-col items-center">
+        <a id="main-cta" href="#registration-form" class="btn-gradient hover:scale-105 text-white px-12 py-4 rounded-xl shadow-2xl font-bold border-2 border-[#1a70b0] flex flex-col items-center">
             <span class="text-2xl">شارك في الحدث</span>
             <span class="text-xs font-normal mt-1 opacity-80 uppercase tracking-widest">الأماكن محدودة</span>
         </a>
@@ -334,10 +334,16 @@
         // Scroll Logic for Sticky Mobile CTA
         window.addEventListener('scroll', function() {
             const stickyCta = document.getElementById('sticky-cta');
-            if (window.scrollY > 400) {
-                stickyCta.classList.add('visible');
-            } else {
-                stickyCta.classList.remove('visible');
+            const mainCta = document.getElementById('main-cta');
+            
+            if (mainCta) {
+                const rect = mainCta.getBoundingClientRect();
+                // Show sticky button only when main button top is above viewport (scrolled past)
+                if (rect.top < 0) {
+                    stickyCta.classList.add('visible');
+                } else {
+                    stickyCta.classList.remove('visible');
+                }
             }
         });
     </script>
