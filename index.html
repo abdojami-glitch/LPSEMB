@@ -1,37 +1,49 @@
-<script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const stickyCta = document.getElementById('sticky-cta');
-            const mainCta = document.getElementById('main-cta');
-            const registrationForm = document.getElementById('registration-form');
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صالون التوظيف - أسبوع توظيف الميديا بايرز</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Almarai', sans-serif; background-color: #f3f4f6; }
+        .bg-dark-blue { background-color: #0d1e30; }
+        .text-neon-green { color: #c3e21e; }
+        .border-neon-green { border-color: #c3e21e; }
+        .bg-neon-green { background-color: #c3e21e; }
+        .header-gradient { background: linear-gradient(135deg, #0D1E30 0%, #07121e 100%); }
+        .btn-gradient { background: linear-gradient(135deg, #0D1E30 0%, #07121e 100%); transition: all 0.3s ease; }
+        .btn-gradient:hover { background: linear-gradient(135deg, #104B75 0%, #0D1E30 100%); }
+        
+        #sticky-cta { transform: translateY(150%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        #sticky-cta.visible { transform: translateY(0); }
+    </style>
+</head>
+<body class="text-gray-800 antialiased pb-20 md:pb-0">
 
-            // 1. Observer l'Bouton CTA L'asli
-            const mainCtaObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // Ila kan l'bouton l'asli kayban f chacha, wla ba9i lfo9 -> Khbe3 sticky
-                    if (entry.isIntersecting || entry.boundingClientRect.top > 0) {
-                        stickyCta.classList.remove('visible');
-                    } else {
-                        // Ila tjaweznah b scrolling lta7t -> Biyen sticky
-                        stickyCta.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0 }); // Kikhdem mnin l'bouton kikhrej kamel mn chacha
+    <div id="sticky-cta" class="fixed bottom-0 left-0 right-0 p-4 z-[100] flex justify-center pointer-events-none">
+        <a href="#registration-form" class="btn-gradient w-full md:max-w-md py-4 rounded-xl shadow-[0_-5px_20px_rgba(0,0,0,0.3)] text-white font-bold text-center border-2 border-[#1a70b0] flex flex-col items-center pointer-events-auto hover:scale-105 transition-transform duration-300">
+            <span class="text-xl">شارك في الحدث الآن</span>
+            <span class="text-[10px] opacity-80 uppercase tracking-widest font-normal">الأماكن محدودة جداً</span>
+        </a>
+    </div>
 
-            mainCtaObserver.observe(mainCta);
+    <header class="header-gradient border-b-4 border-neon-green text-center pt-8 pb-12 px-4">
+        <div class="flex justify-center mb-6 px-2">
+            <img src="https://raw.githubusercontent.com/abdojami-glitch/SEMB/refs/heads/main/SESD.png" alt="Salon d'Emploi Logo" class="w-full max-w-lg md:max-w-xl h-auto">
+        </div>
+        <h1 class="text-white text-lg md:text-xl lg:text-2xl font-bold max-w-4xl mx-auto leading-[2] tracking-wide mt-4 mb-2 drop-shadow-sm opacity-95">
+            ميديا بايرز محترفون سيحولون مشروعك السياحي إلى ماكينة حجوزات ينتظرونك في هذا الحدث المجاني على منصتنا
+        </h1>
+    </header>
 
-            // 2. Observer l'Formulaire (Bach nkhb3ou sticky mnin nwslou n3mrou l'ma3loumat)
-            const formObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Mnin twsel l form, sticky kayghber
-                        stickyCta.classList.remove('visible');
-                    } else if (mainCta.getBoundingClientRect().top < 0) {
-                        // Mnin trje3 tl3 lfo9 chwiya (w ba9i ta7t CTA l'asli), yrje3 iban
-                        stickyCta.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.2 }); // Kikhdem mnin kiban 20% mn l'formulaire
-
-            formObserver.observe(registrationForm);
-        });
-    </script>
+    <section class="container mx-auto px-4 mt-12 max-w-6xl">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="header-gradient border-t-4 border-neon-green rounded-xl p-6 text-center shadow-lg flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_20px_rgba(16,75,117,0.3)] cursor-pointer">
+                <svg class="w-10 h-10 text-neon-green mb-3 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                <h3 class="text-white font-bold text-sm md:text-base">مجاني بالكامل</h3>
+            </div>
+            <div class="header-gradient border-t-4 border-neon-green rounded-xl p-6 text-center shadow-lg flex flex-col items-center justify-center transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_20px_rgba(16,75,117,0.3)] cursor-pointer">
+                <svg class="w-10 h-10 text-neon-green mb-3 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 2
